@@ -1,8 +1,9 @@
 import React from "react";
-import { baseUrl } from "../layout";
 import TodoV2 from "@/components/todo/TodoV2";
 
 type Props = {};
+
+const baseUrl = process.env.NEXT_PUBLIC_API;
 
 export default async function AutoDeleteTodoListV2({}: Props) {
     const response = await fetch(`${baseUrl}/todo-list`);
