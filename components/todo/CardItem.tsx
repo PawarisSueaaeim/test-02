@@ -26,7 +26,7 @@ export default function CardItem({ id, name, type }: Props) {
     return (
         <article
             id={id}
-            className="relative flex justify-between items-center min-h-[50px] border-solid shadow-md duration-300 hover:bg-white_primary hover:duration-300 rounded p-2 m-2"
+            className="relative flex justify-between items-center min-h-[50px] border-solid shadow-md duration-300 hover:bg-slate-200 hover:duration-300 rounded p-2 m-2"
             draggable
             onDragStart={() => handleSetActiveCard()}
             onDragEnd={() => handleUnsetActiveCard()}
