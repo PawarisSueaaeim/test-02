@@ -13,16 +13,16 @@ export type IListData = {
 };
 
 type Props = {
-    Datas: IListData[];
+    datas: IListData[];
 };
 
-export default function TodoV1({ Datas }: Props) {
+export default function TodoV1({ datas }: Props) {
     const dispatch = useDispatch();
     const { listDatas } = useSelector((state: RootStore) => state.autoDeleteTodoListSlice);
 
     useEffect(() => {
-        dispatch(setState({ value: Datas, keyValue: "listDatas" }));
-    }, [Datas]);
+        dispatch(setState({ value: datas, keyValue: "listDatas" }));
+    }, [datas]);
 
     useEffect(() => {
         listDatas.map((item) => {

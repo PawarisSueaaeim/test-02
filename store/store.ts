@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import autoDeleteTodoListSlice from "./feature/todo/AutoDeleteTodoListSlice";
+import createDataFromApiSlice from "./feature/create/CreateDataFromApiSlice";
 
 export const store = configureStore({
     reducer: {
-        autoDeleteTodoListSlice
+        autoDeleteTodoListSlice,
+        createDataFromApiSlice
     },
 })
 

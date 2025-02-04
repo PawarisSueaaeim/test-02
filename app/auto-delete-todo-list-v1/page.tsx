@@ -10,7 +10,7 @@ export default async function AutoDeleteTodoListV1({}: Props) {
 
     return (
         <div>
-            <TodoV1 Datas={listDatas.data} />
+            <TodoV1 datas={listDatas.data} />
         </div>
     );
 }
