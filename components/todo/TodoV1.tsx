@@ -1,16 +1,38 @@
-'use client'
-import React from "react";
-import { useDispatch } from "react-redux";
+"use client";
+import { setState } from "@/store/feature/todo/AutoDeleteTodoListSlice";
+import { RootStore } from "@/store/store";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Column from "./Column";
+
+export type IListData = {
+    id: string;
+    name: string;
+    type: "Fruit" | "Vegetable" | "None";
+    status: "Fruit" | "Vegetable" | "None";
+};
 
 type Props = {
-    Datas: [];
+    Datas: IListData[];
 };
 
 export default function TodoV1({ Datas }: Props) {
-    console.log(Datas)
+    const dispatch = useDispatch();
+    const { listDatas } = useSelector((state: RootStore) => state.autoDeleteTodoListSlice);
+
+    useEffect(() => {
+        dispatch(setState({ value: Datas, keyValue: "listDatas" }));
+    }, [Datas]);
+
+    useEffect(() => {
+        console.log(listDatas);
+    }, [listDatas]);
+
     return (
-        <div>
-            test
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Column title="List" listDatas={listDatas} type="None"/>
+            <Column title="Fruit" listDatas={listDatas} type="Fruit"/>
+            <Column title="Vegetable" listDatas={listDatas} type="Vegetable"/>
         </div>
     );
 }

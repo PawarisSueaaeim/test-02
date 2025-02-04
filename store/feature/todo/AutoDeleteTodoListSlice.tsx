@@ -1,3 +1,4 @@
+import { processListDatas } from "@/model/TodoListModel";
 import { RootStore } from "@/store/store";
 import { createSlice } from "@reduxjs/toolkit";
 
@@ -22,7 +23,7 @@ export const autoDeleteTodoListSlice = createSlice({
             const {value, keyValue} = action.payload;
             switch (keyValue) {
                 case "listDatas": {
-                    state.listDatas = value;
+                    state.listDatas = processListDatas(value);
                     break;
                 }
             }
@@ -30,6 +31,8 @@ export const autoDeleteTodoListSlice = createSlice({
     },
 });
 
-export const {} = autoDeleteTodoListSlice.actions;
+export const {
+    setState
+} = autoDeleteTodoListSlice.actions;
 export default autoDeleteTodoListSlice.reducer;
 export const autoDeleteTodoListSelector = (state: RootStore) => state.autoDeleteTodoListSlice;
