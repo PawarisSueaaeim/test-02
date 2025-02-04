@@ -1,4 +1,4 @@
-import { setStatus } from "@/store/feature/todo/AutoDeleteTodoListSlice";
+import { setState, setStatus } from "@/store/feature/todo/AutoDeleteTodoListSlice";
 import React from "react";
 import { useDispatch } from "react-redux";
 
@@ -12,10 +12,12 @@ export default function CardItem({ id, name, type }: Props) {
     const dispatch = useDispatch();
 
     const handleSetActiveCard = () => {
-        console.log(id, name, type);
+        dispatch(setState({value: id, keyValue: "onDragActiveCard"}));
+        dispatch(setState({value: type, keyValue: "onDragActiveType"}));
     };
     const handleUnsetActiveCard = () => {
-        console.log(id, name, type);
+        dispatch(setState({value: "", keyValue: "onDragActiveCard"}));
+        dispatch(setState({value: "", keyValue: "onDragActiveType"}));
     };
     const handleOnClickCard = () => {
         dispatch(setStatus({id: id, value: type}));

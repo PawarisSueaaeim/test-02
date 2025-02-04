@@ -9,10 +9,14 @@ export type ITodoList = {
         type: "Fruit" | "Vegetable" | "None";
         status: "Fruit" | "Vegetable" | "None";
     }[],
+    onDragActiveCard: string;
+    onDragActiveType: string;
 }
 
 const initialState: ITodoList = {
     listDatas: [],
+    onDragActiveCard: "",
+    onDragActiveType: "",
 };
 
 export const autoDeleteTodoListSlice = createSlice({
@@ -24,6 +28,14 @@ export const autoDeleteTodoListSlice = createSlice({
             switch (keyValue) {
                 case "listDatas": {
                     state.listDatas = processListDatas(value);
+                    break;
+                }
+                case "onDragActiveCard": {
+                    state.onDragActiveCard = value;
+                    break;
+                }
+                case "onDragActiveType": {
+                    state.onDragActiveType = value;
                     break;
                 }
             }
