@@ -28,11 +28,16 @@ export const autoDeleteTodoListSlice = createSlice({
                 }
             }
         },
+        setStatus: (state, action) => {
+            const { id, value } = action.payload;
+            state.listDatas.find((item) => item.id === id)!.status = value;
+        }
     },
 });
 
 export const {
-    setState
+    setState,
+    setStatus
 } = autoDeleteTodoListSlice.actions;
 export default autoDeleteTodoListSlice.reducer;
 export const autoDeleteTodoListSelector = (state: RootStore) => state.autoDeleteTodoListSlice;

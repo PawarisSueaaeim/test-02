@@ -1,4 +1,6 @@
+import { setStatus } from "@/store/feature/todo/AutoDeleteTodoListSlice";
 import React from "react";
+import { useDispatch } from "react-redux";
 
 type Props = {
     id: string;
@@ -7,6 +9,7 @@ type Props = {
 };
 
 export default function CardItem({ id, name, type }: Props) {
+    const dispatch = useDispatch();
 
     const handleSetActiveCard = () => {
         console.log(id, name, type);
@@ -15,9 +18,9 @@ export default function CardItem({ id, name, type }: Props) {
         console.log(id, name, type);
     };
     const handleOnClickCard = () => {
-        console.log(id, name, type);
+        dispatch(setStatus({id: id, value: type}));
     };
-    
+
     return (
         <article
             id={id}
