@@ -1,7 +1,7 @@
 "use client";
-import { setState, setStatus } from "@/store/feature/todo/AutoDeleteTodoListSlice";
+import React, { useEffect, useRef } from "react";
 import { RootStore } from "@/store/store";
-import React, { useEffect } from "react";
+import { setState, setStatus } from "@/store/feature/todo/AutoDeleteTodoListSlice";
 import { useDispatch, useSelector } from "react-redux";
 import Column from "./Column";
 
@@ -19,6 +19,7 @@ type Props = {
 export default function TodoV1({ datas }: Props) {
     const dispatch = useDispatch();
     const { listDatas } = useSelector((state: RootStore) => state.autoDeleteTodoListSlice);
+    const timeoutRefs = useRef<{ [key: string]: NodeJS.Timeout }>({});
 
     useEffect(() => {
         dispatch(setState({ value: datas, keyValue: "listDatas" }));
@@ -27,9 +28,11 @@ export default function TodoV1({ datas }: Props) {
     useEffect(() => {
         listDatas.map((item) => {
             if (item.status !== "None") {
-                setTimeout(() => {
+                timeoutRefs.current[item.id] = setTimeout(() => {
                     dispatch(setStatus({ id: item.id, value: "None" }));
                 }, 5000);
+            } else if (timeoutRefs.current[item.id]) {
+                clearTimeout(timeoutRefs.current[item.id]);
             }
         });
     }, [listDatas]);

@@ -1,7 +1,7 @@
 import React from "react";
-import { IListData } from "./TodoV1";
 import CardItem from "./CardItem";
 import DropArea from "./DropArea";
+import { IListData } from "./TodoV1";
 
 type Props = {
     title: string;
@@ -11,6 +11,7 @@ type Props = {
 };
 
 export default function Column({ title, listDatas, type, featureFag }: Props) {
+
     return (
         <div className="flex flex-col bg-white rounded-lg shadow-xl p-2">
             <div className="font-semibold text-sm md:text-lg m-2">{title}</div>
