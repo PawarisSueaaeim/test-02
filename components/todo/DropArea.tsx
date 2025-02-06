@@ -17,7 +17,6 @@ export default function DropArea({ type }: Props) {
     );
 
     const handleOnDrop = () => {
-        console.log(type, onDragActiveType)
         if (type === onDragActiveType) {
             dispatch(setStatus({ id: onDragActiveCard, value: type }));
         } else if (type !== onDragActiveType) {

@@ -50,7 +50,6 @@ export default function CreateData({ datas }: Props) {
 
     useEffect(() => {
         setNewDatas(transformNestedObject(createdDatas));
-        console.log("test",createdDatas);
     }, [createdDatas]);
 
     return (
