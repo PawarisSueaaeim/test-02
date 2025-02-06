@@ -1,14 +1,10 @@
+import { IListData } from "@/components/todo/TodoV1";
 import { processListDatas } from "@/model/TodoListModel";
 import { RootStore } from "@/store/store";
 import { createSlice } from "@reduxjs/toolkit";
 
 export type ITodoList = {
-    listDatas: {
-        id: string;
-        name: string;
-        type: "Fruit" | "Vegetable" | "None";
-        status: "Fruit" | "Vegetable" | "None";
-    }[];
+    listDatas: IListData[];
     onDragActiveCard: string;
     onDragActiveType: string;
 };
@@ -45,8 +41,10 @@ export const autoDeleteTodoListSlice = createSlice({
             const item = state.listDatas.find((item) => item.id === id);
             if (item && item.status !== "None") {
                 item.status = "None";
+                item.timer = 0;
             } else if (item) {
                 item.status = value;
+                item.timer = 5000;
             }
         },
     },

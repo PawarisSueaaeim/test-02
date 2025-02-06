@@ -6,6 +6,7 @@ export const processListDatas = (datas: IListData[]) => {
             ...item,
             id: `${index+1}-${item.name}`,
             status: "None" as "Fruit" | "Vegetable" | "None",
+            timer: 0,
         }
     });
 };

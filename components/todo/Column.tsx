@@ -20,21 +20,21 @@ export default function Column({ title, listDatas, type, featureFag }: Props) {
                 if (type === "None" && item.status === "None") {
                     return (
                         <div key={item.id}>
-                            <CardItem id={item.id} name={item.name} type={item.type} />
+                            <CardItem id={item.id} name={item.name} type={item.type} status={item.status} timer={item.timer}/>
                         </div>
                     );
                 }
                 if (type === "Fruit" && item.status === "Fruit") {
                     return (
                         <div key={item.id}>
-                            <CardItem id={item.id} name={item.name} type={item.type} />
+                            <CardItem id={item.id} name={item.name} type={item.type} status={item.status} timer={item.timer}/>
                         </div>
                     );
                 }
                 if (type === "Vegetable" && item.status === "Vegetable") {
                     return (
                         <div key={item.id}>
-                            <CardItem id={item.id} name={item.name} type={item.type} />
+                            <CardItem id={item.id} name={item.name} type={item.type} status={item.status} timer={item.timer}/>
                         </div>
                     );
                 }
