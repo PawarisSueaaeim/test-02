@@ -43,10 +43,7 @@ export default function Card({ departments }: Props) {
                     <div className="mb-2">
                         <strong>Address Users:</strong>
                         <ul className="list-disc ml-5">
-                            {(departments[department].addressUser.length > 0
-                                ? departments[department].addressUser
-                                : []
-                            ).map((user, index) => {
+                            {departments[department].addressUser.map((user, index) => {
                                 const [name, address] = Object.entries(user)[0];
                                 return (
                                     <li key={index}>
@@ -59,10 +56,7 @@ export default function Card({ departments }: Props) {
                     <div>
                         <strong>Hair Colors:</strong>
                         <ul className="list-disc ml-5">
-                            {(departments[department].hair.length > 0
-                                ? departments[department].addressUser
-                                : []
-                            ).map((hairColor, index) => {
+                            {departments[department].hair.map((hairColor, index) => {
                                 const [color, count] = Object.entries(hairColor)[0];
                                 return (
                                     <li key={index}>
