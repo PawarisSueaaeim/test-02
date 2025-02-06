@@ -41,10 +41,8 @@ export const autoDeleteTodoListSlice = createSlice({
             const item = state.listDatas.find((item) => item.id === id);
             if (item && item.status !== "None") {
                 item.status = "None";
-                item.timer = 0;
             } else if (item) {
                 item.status = value;
-                item.timer = 5000;
             }
         },
     },

@@ -10,7 +10,6 @@ export type IListData = {
     name: string;
     type: "Fruit" | "Vegetable" | "None";
     status: "Fruit" | "Vegetable" | "None";
-    timer: number;
 };
 
 type Props = {

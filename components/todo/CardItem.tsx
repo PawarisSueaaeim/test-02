@@ -9,10 +9,9 @@ type Props = {
     name: string;
     type: "Fruit" | "Vegetable" | "None";
     status: "Fruit" | "Vegetable" | "None";
-    timer: number;
 };
 
-export default function CardItem({ id, name, type, status, timer }: IListData) {
+export default function CardItem({ id, name, type, status }: IListData) {
     const dispatch = useDispatch();
     const timeoutRefs = useRef<{ [key: string]: NodeJS.Timeout }>({});
 
@@ -33,11 +32,15 @@ export default function CardItem({ id, name, type, status, timer }: IListData) {
             timeoutRefs.current[id] = setTimeout(() => {
                 dispatch(setStatus({ id: id, value: "None" }));
             }, 5000);
-        } else if (timeoutRefs.current[id]) {
-            clearTimeout(timeoutRefs.current[id]);
-            delete timeoutRefs.current[id];
         }
-    }, []);
+    
+        return () => {
+            if (timeoutRefs.current[id]) {
+                clearTimeout(timeoutRefs.current[id]);
+                delete timeoutRefs.current[id];
+            }
+        };
+    }, [status, id, dispatch]);
 
     return (
         <article
