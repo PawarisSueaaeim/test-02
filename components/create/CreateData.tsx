@@ -1,7 +1,7 @@
 "use client";
 import { setState } from "@/store/feature/create/CreateDataFromApiSlice";
 import { RootStore } from "@/store/store";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../common/Card";
 
@@ -15,7 +15,6 @@ type Props = {
 
 export default function CreateData({ datas }: Props) {
     const dispatch = useDispatch();
-    const [newDatas, setNewDatas] = useState<NestedObject>({});
 
     const { createdDatas } = useSelector((state: RootStore) => state.createDataFromApiSlice);
 
@@ -35,7 +34,7 @@ export default function CreateData({ datas }: Props) {
     };
 
     const transformNestedObject = (data: NestedObject): NestedObject => {
-            const transformed: NestedObject = {};
+        const transformed: NestedObject = {};
 
         for (const key in data) {
             transformed[key] = transformObject(data[key]);
@@ -48,13 +47,9 @@ export default function CreateData({ datas }: Props) {
         dispatch(setState({ value: datas }));
     }, [datas]);
 
-    useEffect(() => {
-        setNewDatas(transformNestedObject(createdDatas));
-    }, [createdDatas]);
-
     return (
         <div className="flex justify-center items-center min-h-screen p-4">
-            <Card departments={newDatas}/>
+            <Card departments={transformNestedObject(createdDatas)} />
         </div>
     );
 }
